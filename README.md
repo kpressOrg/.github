@@ -1,9 +1,9 @@
 # STEPS
 
-[:white_check_mark:] - working locally with same code without any issues  
-[:white_check_mark:] - working with docker-compose.yml without any issues  
-[:white_check_mark:] - working with k8s without any issues  
-[:white_check_mark:] - working with helm without any issues  
+[✔] - working locally with same code without any issues  
+[✔] - working with docker-compose.yml without any issues  
+[✔] - working with k8s without any issues  
+[✔] - working with helm without any issues  
 [ ] - working with skaffold without any issues  
 
 ## Prerequisites
@@ -350,7 +350,7 @@
     replicaCount: 3
 
     image:
-      repository: ru44/kpress-k8s-app
+      repository: iru44/kpress-k8s-app
       tag: "latest"
       pullPolicy: Always
 
@@ -479,7 +479,7 @@
           values: |
             replicaCount: 3
             image:
-              repository: ru44/kpress-k8s-app
+              repository: iru44/kpress-k8s-app
               tag: "latest"
             service:
               type: LoadBalancer
@@ -502,3 +502,13 @@
 ## Chapter 2
 
 now it will different story.
+
+```bash
+docker run -it --rm --name kpress-rabbitmq -p 5552:5552 -p 15672:15672 -p 5672:5672  \
+-e RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS='-rabbitmq_stream advertised_host localhost' \
+rabbitmq:3.13 
+```
+
+```bash
+docker exec kpress-rabbitmq rabbitmq-plugins enable rabbitmq_stream rabbitmq_stream_management
+```
